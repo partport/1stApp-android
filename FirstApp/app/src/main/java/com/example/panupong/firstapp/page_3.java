@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +23,13 @@ public class page_3 extends AppCompatActivity {
     boolean isPressed =false;
     final Handler handler = new Handler();
     TextView tv2;
+    ProgressBar mProgress;
+    int progressStatus =0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page3);
-
-
+        mProgress = (ProgressBar) findViewById(R.id.progressBar);
         final TextView tv1 = (TextView) findViewById(R.id.tv1);
         tv1.setText("Press ME!");
         tv2 = (TextView) findViewById(R.id.tv2) ;
@@ -57,20 +59,17 @@ public class page_3 extends AppCompatActivity {
                     num++;
                     Log.d("num",String.valueOf(num));
                     tv2.setText(String.valueOf(num));
+                    mProgress.setProgress(num);
 
-                   final Toast to = Toast.makeText(getApplicationContext(),String.valueOf(num),Toast.LENGTH_SHORT);
-                    to.show();
-
-                    Handler hh = new Handler();
-                    hh.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            to.cancel();
-                        }
-                    },500);
-
+//                   final Toast to = Toast.makeText(getApplicationContext(),String.valueOf(num),Toast.LENGTH_SHORT);
+//                    to.show();
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            to.cancel();
+//                        }
+//                    },600);
                     handler.postDelayed(this,1000);
-
                 }
             }
         });
@@ -79,7 +78,7 @@ public class page_3 extends AppCompatActivity {
         isPressed = false;
         num=0;
         tv2.setText("");
-
+        mProgress.setProgress(0);
     }
 
 }

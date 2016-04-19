@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn1 = (Button) findViewById(R.id.button);
         Button btn2 = (Button) findViewById(R.id.button2);
         Button btn3 = (Button) findViewById(R.id.button3);
+        Button btn4 = (Button) findViewById(R.id.button4);
         setSupportActionBar(tb);
 
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent3 = new Intent(getApplicationContext(),page_3.class);
                 startActivity(intent3);
+            }
+        });
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent4 = new Intent(getApplicationContext(),page_4.class);
+                startActivity(intent4);
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
