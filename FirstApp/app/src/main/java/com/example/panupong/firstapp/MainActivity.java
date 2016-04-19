@@ -1,5 +1,6 @@
 package com.example.panupong.firstapp;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +8,16 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ListViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,57 +28,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tb = (Toolbar) findViewById(R.id.toolbar);
-
-        Button btn1 = (Button) findViewById(R.id.button);
-        Button btn2 = (Button) findViewById(R.id.button2);
-        Button btn3 = (Button) findViewById(R.id.button3);
-        Button btn4 = (Button) findViewById(R.id.button4);
         setSupportActionBar(tb);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                final ProgressDialog pg = new ProgressDialog(MainActivity.this);
-//                pg.setTitle("Please Wait !");
-//                pg.setMessage("Loading ...");
-//                pg.show();
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        try{
-//                            Thread.sleep(10000);
-//                        }catch (Exception e){
-//
-//                        }
-//                        pg.dismiss();
-//                    }
-//                }).start();
-                Intent intent1 = new Intent(getApplicationContext(),page_1.class);
-                startActivity(intent1);
+        ListView lv = (ListView) findViewById(R.id.listView);
 
+        String[] values = new String[] { "Page1",
+                "Page2",
+                "Page3",
+                "Page4",
+                "Page5"
+        };
 
-            }
-        });
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,values);
+        lv.setAdapter(adapter);
 
-        btn2.setOnClickListener(new View.OnClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(),page_2.class);
-                startActivity(intent2);
-            }
-        });
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent3 = new Intent(getApplicationContext(),page_3.class);
-                startActivity(intent3);
-            }
-        });
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent4 = new Intent(getApplicationContext(),page_4.class);
-                startActivity(intent4);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = String.valueOf(parent.getItemAtPosition(position));
+                Snackbar.make(view, String.valueOf(position)+" "+name+" "+String.valueOf(id), Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+                Intent i ;
+                switch (position){
+                    case 0: i = new Intent(getApplicationContext(),page_1.class);
+                        startActivity(i);break;
+                    case 1: i = new Intent(getApplicationContext(),page_2.class);
+                        startActivity(i);break;
+                    case 2: i = new Intent(getApplicationContext(),page_3.class);
+                        startActivity(i);break;
+                    case 3: i = new Intent(getApplicationContext(),page_4.class);
+                        startActivity(i);break;
+                }
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -81,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+
             }
         });
     }
@@ -125,5 +113,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+    private void pgDialog(){
+        final ProgressDialog pg = new ProgressDialog(MainActivity.this);
+        pg.setTitle("Please Wait !");
+        pg.setMessage("Loading ...");
+        pg.show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep(10000);
+                }catch (Exception e){
+
+                }
+                pg.dismiss();
+            }
+        }).start();
     }
 }
