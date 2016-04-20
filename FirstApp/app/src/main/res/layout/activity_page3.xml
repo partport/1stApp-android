@@ -8,14 +8,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="hi"
-        android:id="@+id/tv1"
-        android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/tv2"
         android:layout_gravity="center_horizontal" />
@@ -28,6 +20,14 @@
         android:max="10"
         android:maxHeight="50dip"
         android:minHeight="35dip"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="hi"
+        android:id="@+id/tv1"
         android:layout_gravity="center_horizontal" />
 
 

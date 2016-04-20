@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -19,9 +20,12 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.graphics.Canvas;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -30,41 +34,61 @@ import java.util.Random;
  * Created by Panupong on 4/19/2016.
  */
 public class page_4 extends AppCompatActivity {
-
+    int count = 1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(new MyView(this));
+        //setContentView(new MyView(this));
+        setContentView(R.layout.activity_page4);
+        final canvasView myView = (canvasView)findViewById(R.id.cview);
+        Button btn1 = (Button)findViewById(R.id.random);
+
+        myView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
+
     public class MyView extends View {
+
         Paint paint;
         Context drawContext;
         DisplayMetrics metrics = this.getResources().getDisplayMetrics();
         float maxWidth = metrics.widthPixels;
         float maxHeight = metrics.heightPixels;
         float minWidth = 50;
-        float minHeight = 50;
+        float minHeight = 80;
         Random r = new Random();
-        int radius = r.nextInt(200-50)+50;
-        float ww = r.nextFloat()*(maxWidth-minWidth)+minWidth;
-        float hh = r.nextFloat()*((maxHeight-300)-minHeight)+minHeight;
+        int radius = r.nextInt(200 - 50) + 50;
+        float ww = r.nextFloat() * (maxWidth - minWidth) + minWidth;
+        float hh = r.nextFloat() * ((maxHeight - 300) - minHeight) + minHeight;
 
 
-        public MyView(Context context){
+        public MyView(Context context) {
             super(context);
             this.drawContext = context;
             paint = new Paint();
         }
+
         @Override
         protected void onDraw(Canvas canvas) {
             // TODO Auto-generated method stub
             super.onDraw(canvas);
-            Log.d("r",String.valueOf(radius));
-            Log.d("w",String.valueOf(ww));
-            Log.d("H",String.valueOf(hh));
+
+            Log.d("r", String.valueOf(radius));
+            Log.d("w", String.valueOf(ww));
+            Log.d("H", String.valueOf(hh));
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.DKGRAY);
-            canvas.drawCircle(ww, hh, radius, paint);
+            canvas.drawCircle(100, 100, 100, paint);
+
+            paint.setColor(Color.BLACK);
+            paint.setTextSize(40);
+            canvas.drawText(String.valueOf(count), 20, 80, paint);
+
+
         }
 
         @Override
@@ -73,23 +97,24 @@ public class page_4 extends AppCompatActivity {
             float y = event.getY();
             float x = event.getX();
 
-            switch (event.getAction()){
+            switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
 
                     if (inCircle(event.getX(), event.getY(), ww, hh, radius)) {
-                    //if( x > ww-100 && x < ww+100  && y > hh-100 && y < hh+100 ){
-                        Log.d("w",String.valueOf(ww));
-                        Log.d("H",String.valueOf(hh));
-                        Log.d("TT","x"+x+"y"+y);
-                        Snackbar.make(getRootView(),"TouchX"+x+"TouchY"+y,Snackbar.LENGTH_SHORT).show();
-
+                        //if( x > ww-100 && x < ww+100  && y > hh-100 && y < hh+100 ){
+                        Log.d("w", String.valueOf(ww));
+                        Log.d("H", String.valueOf(hh));
+                        Log.d("TT", "x" + x + "y" + y);
+                        Snackbar.make(getRootView(), "TouchX" + x + "TouchY" + y, Snackbar.LENGTH_SHORT).show();
+                        count++;
                         setContentView(new MyView(getBaseContext()));
                         break;
                     }
-                return true;
+                    return true;
             }
             return super.onTouchEvent(event);
         }
+
         private boolean inCircle(float x, float y, float circleCenterX, float circleCenterY, float circleRadius) {
             double dx = Math.pow(x - circleCenterX, 2);
             double dy = Math.pow(y - circleCenterY, 2);
