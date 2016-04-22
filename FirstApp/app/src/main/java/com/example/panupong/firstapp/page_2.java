@@ -24,6 +24,8 @@ public class page_2 extends AppCompatActivity {
 
         final Employee emp = new Employee("Note",18,Employee.GenderEnum.Unknow);
 
+        emp.toString();
+
         EditText txtName = (EditText)findViewById(R.id.et_name);
         final EditText txtAge = (EditText) findViewById(R.id.et_age);
         RadioButton rdoUnknown = (RadioButton) findViewById(R.id.rdo_unknown);

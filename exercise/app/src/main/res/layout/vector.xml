@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/vc_tv1"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="translation"
+        android:id="@+id/btn_tran"
+        android:layout_below="@+id/distance"
+        android:layout_toLeftOf="@+id/vc_tv1"
+        android:layout_toStartOf="@+id/vc_tv1" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rotation"
+        android:id="@+id/btn_rotat"
+        android:layout_below="@+id/degree"
+        android:layout_alignLeft="@+id/degree"
+        android:layout_alignStart="@+id/degree" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/vc_tv2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/distance"
+        android:ems="10"
+        android:layout_below="@+id/vc_tv1"
+        android:layout_alignLeft="@+id/btn_tran"
+        android:layout_alignStart="@+id/btn_tran"
+        android:layout_marginTop="46dp"
+        android:hint="distance" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/degree"
+        android:hint="Degree"
+        android:layout_below="@+id/btn_tran"
+        android:layout_alignLeft="@+id/btn_tran"
+        android:layout_alignStart="@+id/btn_tran" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
+        android:layout_alignTop="@+id/distance"
+        android:layout_above="@+id/degree"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@+id/distance">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rx"
+            android:text="X"
+            android:layout_alignTop="@+id/radioGroup"
+            android:layout_alignRight="@+id/editText2"
+            android:layout_alignEnd="@+id/editText2" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ry"
+            android:text="Y"
+            android:layout_alignTop="@+id/rx"
+            android:layout_toRightOf="@+id/vc_tv1"
+            android:layout_toEndOf="@+id/vc_tv1" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rz"
+            android:text="Z"
+            android:layout_alignTop="@+id/ry"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="28dp"
+            android:layout_marginEnd="28dp" />
+
+    </RadioGroup>
+
+
+</RelativeLayout>
