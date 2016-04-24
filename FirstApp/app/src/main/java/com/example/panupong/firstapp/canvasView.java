@@ -76,9 +76,9 @@ public class canvasView extends View {
 
                 if (inCircle(event.getX(), event.getY(), ww, hh, radius)) {
                     //if( x > ww-100 && x < ww+100  && y > hh-100 && y < hh+100 ){
-                    Log.d("w", String.valueOf(ww));
-                    Log.d("H", String.valueOf(hh));
-                    Log.d("TT", "x" + x + "y" + y);
+//                    Log.d("w", String.valueOf(ww));
+//                    Log.d("H", String.valueOf(hh));
+//                    Log.d("TT", "x" + x + "y" + y);
                     //Snackbar.make(getRootView(), "TouchX" + x + "TouchY" + y, Snackbar.LENGTH_SHORT).show();
                         point++;
 //                    onRandom(); // get new position
@@ -105,7 +105,7 @@ public class canvasView extends View {
     public void onRandom(){
          radius = r.nextInt(120 - 50) + 50;
          ww = r.nextFloat() * (maxWidth - minWidth) + minWidth;
-         hh = r.nextFloat() * ((maxHeight - 300) - minHeight) + minHeight;
+         hh = r.nextFloat() * ((maxHeight - 500) - minHeight) + minHeight;
     }
     public void getDeviceSize(){
         DisplayMetrics metrics = this.getResources().getDisplayMetrics();

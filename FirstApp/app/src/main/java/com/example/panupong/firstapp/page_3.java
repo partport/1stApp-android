@@ -69,6 +69,11 @@ public class page_3 extends AppCompatActivity {
 //                            to.cancel();
 //                        }
 //                    },600);
+                    if(num==10){
+                        mProgress.setProgress(10);
+                        tv2.setText(String.valueOf(10));
+                        isPressed =false;
+                    }
                     handler.postDelayed(this,1000);
                 }
             }

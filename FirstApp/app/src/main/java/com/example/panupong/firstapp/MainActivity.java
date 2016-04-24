@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);break;
                     case 3: i = new Intent(getApplicationContext(),page_4.class);
                         startActivity(i);break;
+                    case 4: i = new Intent(getApplicationContext(),page_5.class);
+                        startActivity(i);break;
                 }
             }
         });

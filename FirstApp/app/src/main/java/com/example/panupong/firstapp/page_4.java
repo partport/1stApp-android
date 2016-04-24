@@ -30,7 +30,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Panupong on 4/19/2016.
@@ -48,31 +52,35 @@ public class page_4 extends AppCompatActivity {
         final TextView tv1 = (TextView) findViewById(R.id.tv_score);
         final TextView tv_time = (TextView) findViewById(R.id.tv_time);
         btn1.setVisibility(View.INVISIBLE);
-        btn2.setOnClickListener(new View.OnClickListener() {
+        myView.setVisibility(View.INVISIBLE);
+        tv_time.setText("00:00");
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                myView.onRandom();
+                myView.invalidate();
+                tv1.setText("Score=" + myView.getPoint());
+                handler.postDelayed(this,400);
+            }
+        });
+       btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new CountDownTimer(30000, 1000) {
+                btn2.setVisibility(View.INVISIBLE);
+                new CountDownTimer(60000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
-                        tv_time.setText(String.valueOf( millisUntilFinished / 1000));
-                        final Handler handler = new Handler();
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                myView.onRandom();
-                                myView.invalidate();
-                                tv1.setText(String.valueOf(myView.getPoint()));
-                            }
-                        });
-
+                        tv_time.setText(getTimeFormat(millisUntilFinished));
+                        myView.setVisibility(View.VISIBLE);
 
                     }
-
                     public void onFinish() {
                         //tv_time.setText("GAME OVER WHEN HIT 10 TIME ");
-                       // btn1.setVisibility(View.VISIBLE);
+                        btn1.setVisibility(View.VISIBLE);
                         myView.setVisibility(View.INVISIBLE);
-                        tv1.setText("Score" + myView.getPoint() );
+                        tv1.setText("Score=" + myView.getPoint());
+                        tv_time.setText("0");
                         btn1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -81,16 +89,24 @@ public class page_4 extends AppCompatActivity {
                                 btn1.setVisibility(View.INVISIBLE);
                                 myView.setVisibility(View.VISIBLE);
                                 myView.invalidate();
+                                btn2.setVisibility(View.VISIBLE);
+                                btn2.callOnClick();
                             }
                         });
                     }
                 }.start();
+
             }
         });
 
-
-
-
     }
+    public String getTimeFormat (long ms){
+        String temp;
+        DateFormat outFormat = new SimpleDateFormat("mm:ss");
+        Date d = new Date(ms);
+        temp = outFormat.format(d);
+        return temp;
+    }
+
 
 }
