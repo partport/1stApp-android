@@ -59,9 +59,9 @@ public class canvasView extends View {
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
         onRandom();
-        Log.d("r", String.valueOf(radius));
-        Log.d("w", String.valueOf(ww));
-        Log.d("H", String.valueOf(hh));
+//        Log.d("r", String.valueOf(radius));
+//        Log.d("w", String.valueOf(ww));
+//        Log.d("H", String.valueOf(hh));
         canvas.drawCircle(ww, hh, radius, paint);
 
     }

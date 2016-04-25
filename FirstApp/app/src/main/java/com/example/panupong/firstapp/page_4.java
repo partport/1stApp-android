@@ -41,6 +41,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class page_4 extends AppCompatActivity {
     int count = 1;
+    long b = 6000;
+    long r;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,7 @@ public class page_4 extends AppCompatActivity {
                 myView.onRandom();
                 myView.invalidate();
                 tv1.setText("Score=" + myView.getPoint());
-                handler.postDelayed(this,400);
+                handler.postDelayed(this,r);
             }
         });
        btn2.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +75,8 @@ public class page_4 extends AppCompatActivity {
                     public void onTick(long millisUntilFinished) {
                         tv_time.setText(getTimeFormat(millisUntilFinished));
                         myView.setVisibility(View.VISIBLE);
+                        calTime();
+                        Log.d("00"," "+r+"/"+b);
 
                     }
                     public void onFinish() {
@@ -107,6 +111,12 @@ public class page_4 extends AppCompatActivity {
         temp = outFormat.format(d);
         return temp;
     }
+    public  void calTime (){
+
+                r= (long)(Math.log(b)*100);
+                b-=100;
+    }
+
 
 
 }

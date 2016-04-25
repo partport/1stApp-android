@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 "Page2",
                 "Page3",
                 "Page4",
-                "Page5"
+                "Page5",
+                "Page6"
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,values);
@@ -59,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                     case 3: i = new Intent(getApplicationContext(),page_4.class);
                         startActivity(i);break;
                     case 4: i = new Intent(getApplicationContext(),page_5.class);
+                        startActivity(i);break;
+                    case 5: i = new Intent(getApplicationContext(),page_6.class);
                         startActivity(i);break;
                 }
             }
